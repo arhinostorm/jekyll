@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html class="video-html no-js">
+  {% include head.html %}
+  <body>
+    <div class="page-wrap">
+    {% include header.html %}
+    
+    {% for tweet in site.tweets %}
+      <h2>{{ tweet.title }}</h2>
+    {% endfor %}
+
+    </div>
+    {% include footer.html %}
+    <script data-main="../js/prod/main-media-built" src="../js/require.js"></script>
+  </body>
+</html>
