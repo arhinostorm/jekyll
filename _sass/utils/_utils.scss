@@ -1,0 +1,105 @@
+$base-font-size: 16px;
+$fs-base-px: 16px;
+$fix-mqs: false !default;
+$old-ie: false !default;
+
+
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+// Convert pixels to rem, based on base font
+@function calculate-rem($size,$base-font-size:$fs-base-px) {
+  $remSize: $size / strip-unit($base-font-size);
+  @return #{$remSize};
+}
+
+// Rem sizing, px fallback
+// http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
+@mixin rem($property, $values) {
+  $max: length($values);
+  $pxValues: "";
+  $remValues: "";
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $pxValues: #{$pxValues + $value}px;
+
+    @if $i < $max {
+      $pxValues: #{$pxValues + " "};
+    }
+  }
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $remValues: #{$remValues + calculate-rem($value)}rem;
+
+    @if $i < $max {
+      $remValues: #{$remValues + " "};
+    }
+  }
+
+  #{$property}: $pxValues;
+  #{$property}: $remValues;
+}
+
+// Shorthand font-size in rem
+@mixin font-size($size_in_px) {
+  @include rem(font-size, $size_in_px);
+}
+
+@mixin respond-min($width) 
+{
+  // If we're outputting for a fixed media query set...
+  @if $fix-mqs 
+  {
+    // ...and if we should apply these rules...
+    @if $fix-mqs >= $width 
+    {
+        // ...output the content the user gave us.
+        @content;
+    }
+  }
+  @else 
+  {
+    // Otherwise, output it using a regular media query
+    @media screen and (min-width: $width) 
+    {
+        @content;
+    }
+  }
+}
+
+
+@mixin old-ie 
+{
+  // Only use this content if we're dealing with old IE
+  @if $old-ie 
+  {
+      @content;
+  }
+}
+
+@mixin prefixed($property, $value) 
+{
+  -webkit-#{$property}: #{$value};
+  -moz-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+  -o-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content; 
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  } 
+}

@@ -1,0 +1,292 @@
+.hero
+{
+  position: relative;
+  background-image: url(../images/header-bg-mob.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 500px;
+  height: calc(100vh - 57px);
+  text-align: center;
+  box-sizing: border-box;
+
+  .hero-layout
+  {
+    display: table;
+    height: 100%;
+    width: 100%;
+  }
+
+  .hero-center
+  {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  h1
+  {
+    font-size: 100px;
+    line-height: 90px;
+    height: 280px;
+    max-width: 290px;
+    margin: auto;
+    font-family: 'CervoNeue-MediumNeue', sans-serif;
+  }
+
+  .teletype-cursor
+  {
+    color: $brightblue;
+    font-size: 90px;
+    top: -10px;
+    position: relative;
+  }
+
+  h2
+  {
+    display: none;
+  }
+
+  .down-btn
+  {
+    display: block;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -30px;
+  }
+
+  @media screen and (min-width: $tablet)
+  {
+    background-image: url(../images/header-bg.jpg);
+    background-size: cover;
+    height: 780px;
+    margin-bottom: 120px;
+
+    h1
+    {
+      height: auto;
+      width: 100%;
+      max-width: none;
+    }
+
+    h2
+    {
+      display: block;
+      margin-top: 17px;
+      font-size: 24px;
+      opacity: 0;
+      @include prefixed(transition-duration, .5s);
+      @include prefixed(transition-property, opacity);
+
+      &.show
+      {
+        opacity: 1;
+      }
+    }
+  }
+
+  @media screen and (min-width: $desktopsmall)
+  {
+    height: 540px;
+  }
+
+  @media screen and (min-width: $desktopwide)
+  {
+    height: 700px;
+  }
+
+  @media screen and (min-width: $desktopsuper)
+  {
+    height: 800px;
+  }
+}
+
+
+.no-touch
+{
+  .hero
+  {
+    @media screen and (min-width: $desktopsmall)
+    {
+      height: calc(100vh - 57px);
+    }
+  }
+}
+
+
+.play-btn
+{
+  display: block;
+  width: 84px;
+  height: 84px;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.text-panel
+{
+  display: none;
+
+  &.mobile-only
+  {
+    display: block;
+    text-align: center;
+    padding: 80px 40px;
+
+    h2
+    {
+      font-size: 32px;
+      line-height: 40px;
+      opacity: 1;
+    }
+  }
+
+  @media screen and (min-width: $tablet)
+  {
+    &.mobile-only
+    {
+      display: none;
+    }
+  }
+}
+
+.tweet-panel
+{
+  width: 100%;
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
+
+  .wrapper
+  {
+    position: relative;
+    height: 100%;
+    max-width: 764px;
+    margin: auto;
+    overflow: hidden;
+  }
+
+  .panel-text
+  {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    text-align: left;
+
+    .panel-text-holder
+    {
+      display: table;
+      height: 100%;
+      margin: auto;
+      text-decoration: none;
+    }
+
+    .text-center
+    {
+      display: table-cell;
+      vertical-align: middle;
+      cursor: pointer;
+      opacity: 0;
+      @include prefixed(transition-property, opacity);
+      @include prefixed(transition-duration, .4s);
+    }
+
+    h3
+    {
+      color: $brightblue;
+      font-size: 22px;
+      line-height: 30px;
+      max-width: 300px;
+      margin: auto;
+    }
+
+    h4
+    {
+      font-size: 32px;
+      line-height: 38px;
+      max-width: 300px;
+      margin: auto;
+      color: white;
+    }
+  }
+
+  .tweet-image
+  {
+    position: relative;
+    z-index: 9;
+    margin: auto;
+    display: block;
+    max-width: 383px;
+    cursor: pointer;
+    opacity: 0.2;
+    @include prefixed(transition-property, opacity);
+    @include prefixed(transition-duration, .2s);
+
+    img
+    {
+      max-width: 100%;
+      display: block;
+    }
+  }
+
+  &.active
+  {
+    .panel-text .text-center,
+    .tweet-image
+    {
+      opacity: 1;
+    }
+  }
+
+  .text-center:hover
+  {
+    h4 span
+    {
+      border-bottom: 1px solid $brightblue;
+    }
+
+    .play-btn
+    {
+      @include prefixed(transform, scale(1.1));
+    }
+  }
+
+  @media screen and (min-width: $tablet)
+  {
+    margin-bottom: 0;
+    padding-bottom: 60px;
+    
+    .tweet-image
+    {
+      right: 0;
+      float: right;
+      @include prefixed(transition-duration, .4s);
+      
+ 
+      &.left-image
+      {
+        left: 0;
+        float: left;
+      }
+    }
+
+    &.tweet-panel
+    {
+      padding-bottom: 120px;
+    }
+  }
+}
+
+.no-js .panel
+{
+  .blocker
+  {
+    opacity: .3;
+  }
+}
+
+

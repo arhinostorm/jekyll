@@ -1,0 +1,28 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Once Upon a Tweet" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{site.url}}{{page.url}}" />
+  <meta property="og:image" content="{{site.url}}/assets/images/share/{% if page.facebookimage %}{{ page.facebookimage}}{% else %}facebook-image.jpg{% endif %}" />
+  <meta name="keywords" content="Once Upon a Tweet, Found online, told online. True stories from Twitter">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@bbc">
+  <meta name="twitter:title" content="Once Upon a Tweet">
+  <meta name="twitter:description" content="{{ site.description }}">
+  <meta name="twitter:image" content="{{site.url}}/assets/images/share/twitter-image.jpg">
+
+  <title>{{ site.title | escape }}</title>
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{{site.url}}/assets/css/screen.css" />
+  <link rel="shortcut icon" href="{{site.url}}/assets/images/favicon.png">
+
+</head>
+
+  
